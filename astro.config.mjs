@@ -1,5 +1,7 @@
 import { defineConfig } from "astro/config";
 import lit from "@astrojs/lit";
+import netlify from '@astrojs/netlify/functions';
+
 
 // https://astro.build/config
 
@@ -8,7 +10,7 @@ import lit from "@astrojs/lit";
 const today = new Date().toISOString().slice(0, 10);
 export default defineConfig({
   output: "server",
-  // Enable Lit to support LitHTML components and templates.
+  adapter: netlify(),
   integrations: [lit()],
 });
 
