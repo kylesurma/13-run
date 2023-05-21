@@ -132,7 +132,7 @@ export class HeaderDropdown extends LitElement {
   constructor() {
     super();
     this.selectedHeader = "$100 13-Run";
-    this.headers = [{name: '$100 13-Run', url:'100-13-run'}, {name: '$50 13-Run', url:'50-13-run'}, {name: '8 Run Out', url: '8-run-out'}];
+    this.headers = [{name: '$100 13-Run', url:'100-13-run'}, {name: '$50 13-Run', url:'50-13-run'}];
     this.isShowing = false;
   }
 
