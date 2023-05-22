@@ -88,11 +88,8 @@ const getMLBTeams = async () => {
 
 export const getTodaysScores = async (overideDate = "", isObject = false) => {
   let todayDate = new Date();
-  if (typeof todayDate === "object") {
     todayDate.setMinutes(todayDate.getMinutes() - todayDate.getTimezoneOffset())
      todayDate = todayDate.toISOString().split("T")[0];
-    console.log({todayDate})
-  }
 
   // write a fuction that takes a date formatted as YYYY-MM-DD and formats to correct timezone
 
@@ -103,8 +100,6 @@ export const getTodaysScores = async (overideDate = "", isObject = false) => {
   const teamsObj = {};
 
   allGames.dates.forEach((date, i) => {
-
-    console.log({date: date.date})
     date.games.forEach((game) => {
 
       const { gamePk } = game;
