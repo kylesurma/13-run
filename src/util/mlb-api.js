@@ -50,7 +50,7 @@ const getMLBTeams = async () => {
   const response = await fetch(mlbUrlByDateRange("2023-03-30", "2023-04-20"));
   const allGames = await response.json();
 
-  console.log({allGames})
+  console.log({ allGames });
 
   const allTeams = [];
   const teamsObj = {};
@@ -87,62 +87,63 @@ const getMLBTeams = async () => {
 };
 
 export const getTodaysScores = async (overideDate = "", isObject = false) => {
-  let todayDate = new Date();
-    todayDate.setMinutes(todayDate.getMinutes() - todayDate.getTimezoneOffset())
-     todayDate = todayDate.toISOString().split("T")[0];
+  try {
+    let todayDate = new Date();
 
-  // write a fuction that takes a date formatted as YYYY-MM-DD and formats to correct timezone
+    todayDate.setMinutes(
+      todayDate.getMinutes() - todayDate.getTimezoneOffset()
+    );
+    todayDate = todayDate.toISOString().split("T")[0];
 
-  const response = await fetch(mlbUrlByDateRange("2023-05-06", todayDate))
-  const allGames = await response.json();
+    // write a fuction that takes a date formatted as YYYY-MM-DD and formats to correct timezone
+    const response = await fetch(mlbUrlByDateRange("2023-05-06", todayDate));
+    const allGames = await response.json();
 
-  const allScores = [];
-  const teamsObj = {};
+    const allScores = [];
+    const teamsObj = {};
 
-  allGames.dates.forEach((date, i) => {
-    date.games.forEach((game) => {
+    allGames.dates.forEach((date, i) => {
+      date.games.forEach((game) => {
+        const { gamePk } = game;
+        const homeTeam = game.teams.home.team.teamName;
+        const awayTeam = game.teams.away.team.teamName;
 
-      const { gamePk } = game;
-      const homeTeam = game.teams.home.team.teamName;
-      const awayTeam = game.teams.away.team.teamName;
+        if (game.gameUtils.isFinal) {
+          const homeTeamScore = {
+            team: homeTeam,
+            opponent: awayTeam,
+            score: game.teams.home.score,
+            date: date.date,
+            gamePk: gamePk.toString(),
+          };
 
+          const awayTeamScore = {
+            team: awayTeam,
+            opponent: homeTeam,
+            score: game.teams.away.score,
+            date: date.date,
+            gamePk: gamePk.toString(),
+          };
 
-      if (
-        game.gameUtils.isFinal
-      ) {
-        const homeTeamScore = {
-          team: homeTeam,
-          opponent: awayTeam,
-          score: game.teams.home.score,
-          date: date.date,
-          gamePk: gamePk.toString()
-        };
+          if (!teamsObj[homeTeam]) {
+            teamsObj[homeTeam] = [];
+          }
+          if (!teamsObj[awayTeam]) {
+            teamsObj[awayTeam] = [];
+          }
 
-        const awayTeamScore = {
-          team: awayTeam,
-          opponent: homeTeam,
-          score: game.teams.away.score,
-          date: date.date,
-          gamePk: gamePk.toString()
-        };
+          teamsObj[homeTeam].push(homeTeamScore);
+          teamsObj[awayTeam].push(awayTeamScore);
 
-        if (!teamsObj[homeTeam]) {
-          teamsObj[homeTeam] = [];
+          allScores.push(homeTeamScore);
+          allScores.push(awayTeamScore);
         }
-        if (!teamsObj[awayTeam]) {
-          teamsObj[awayTeam] = [];
-        }
-
-        teamsObj[homeTeam].push(homeTeamScore);
-        teamsObj[awayTeam].push(awayTeamScore);
-
-        allScores.push(homeTeamScore);
-        allScores.push(awayTeamScore);
-      }
+      });
     });
-  });
-
-  return isObject ? teamsObj : allScores;
+    return isObject ? teamsObj : allScores;
+  } catch (error) {
+    console.dir(error);
+  }
 };
 
 export async function postTeams() {
@@ -159,7 +160,6 @@ export async function postTeams() {
   try {
     const res = await postRequest({ mutations });
     const json = await res.json();
-
   } catch (error) {
     console.dir(error);
   }
@@ -169,33 +169,35 @@ export async function postScores() {
   const scores = await getTodaysScores();
   const { teams } = await getTeamsAndArchivedScores();
 
-  const mutations = scores.map((scoreObj, i) => {
-    const { team, opponent, score, date, gamePk } = scoreObj;
-    const teamObj = teams.find((teamObj) => teamObj.name === team)
-    const id = teamObj._id;
+  const mutations = scores
+    .map((scoreObj, i) => {
+      const { team, opponent, score, date, gamePk } = scoreObj;
+      const teamObj = teams.find((teamObj) => teamObj.name === team);
+      const id = teamObj._id;
 
-    if (teamObj.items.some((item) => item.gamePk === gamePk)) return;
+      if (teamObj.items.some((item) => item.gamePk === gamePk)) return;
 
-    return {
-      patch: {
-        id,
-        insert: {
-          after: "items[-1]",
-          items: [
-            {
-              opponent,
-              score: parseFloat(score),
-              date,
-              gamePk,
-            },
-          ],
+      return {
+        patch: {
+          id,
+          insert: {
+            after: "items[-1]",
+            items: [
+              {
+                opponent,
+                score: parseFloat(score),
+                date,
+                gamePk,
+              },
+            ],
+          },
         },
-      },
-    };
-  }).filter(Boolean);
+      };
+    })
+    .filter(Boolean);
 
   try {
-    console.log(mutations)
+    console.log(mutations);
     // const res = await postRequest({ mutations });
     // const json = await res.json();
     // console.log(json);
