@@ -20,7 +20,7 @@ export const query = (query) => {
 
 export const postRequest = (mutations) => {
   return fetch(
-    `https://${projectId}.api.sanity.io/${ver}/data/mutate/${dataset}`,
+    `https://${projectId}.api.sanity.io/${ver}/data/mutate/${dataset}?returnDocuments=true`,
     {
       method: "POST",
       headers: {

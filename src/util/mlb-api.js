@@ -1,20 +1,45 @@
 import { postRequest, query } from "../pages/api.js";
 
 export const mlbUrlByDateRange = (startDate, endDate) => {
-  // formated as YYYY-MM-DD
   return `https://bdfed.stitch.mlbinfra.com/bdfed/transform-mlb-scoreboard?stitch_env=prod&sortTemplate=4&sportId=1&&sportId=51&startDate=${startDate}&endDate=${endDate}&gameType=E&&gameType=S&&gameType=R&&gameType=F&&gameType=D&&gameType=L&&gameType=W&&gameType=A&&gameType=C&language=en&leagueId=104&&leagueId=103&&leagueId=159&&leagueId=160&contextTeamId=`;
 };
 
+const getTodaysDate = () => {
+  const todayDate = new Date();
+
+    todayDate.setMinutes(
+      todayDate.getMinutes() - todayDate.getTimezoneOffset()
+    );
+    return todayDate.toISOString().split("T")[0];
+}
+export const getLatestUpdate = async () => {
+  try {
+    const res = await query(`*[ _type == "latest" ]`);
+    const json = await res.json();
+    return json.result[0]
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export async function getTeamsAndArchivedScores(
-  startDate = "2022-04-01",
-  endDate = "2022-04-01"
+  startDate = "2023-05-06",
+  endDate = getTodaysDate()
 ) {
-  const res = await query(`*[ _type == "team" ]`);
-  const json = await res.json();
-  const teams = json.result;
+  let teams;
+  try {
+    const res = await query(`*[ _type == "team" ]`);
+    const json = await res.json();
+    teams = json.result;
+  } catch (error) {
+    console.error(error);
+  }
+
+    const { date } = await getLatestUpdate();
+
   let archivedScores = {};
 
-  const todayScores = await getTodaysScores(undefined, true);
+  const todayScores = await getTodaysScores(date, true);
 
   teams.forEach((team) => {
     archivedScores[team.name] = {};
@@ -88,15 +113,9 @@ const getMLBTeams = async () => {
 
 export const getTodaysScores = async (overideDate = "", isObject = false) => {
   try {
-    let todayDate = new Date();
+    const todayDate = getTodaysDate()
 
-    todayDate.setMinutes(
-      todayDate.getMinutes() - todayDate.getTimezoneOffset()
-    );
-    todayDate = todayDate.toISOString().split("T")[0];
-
-    // write a fuction that takes a date formatted as YYYY-MM-DD and formats to correct timezone
-    const response = await fetch(mlbUrlByDateRange("2023-05-06", todayDate));
+    const response = await fetch(mlbUrlByDateRange(overideDate || todayDate, todayDate));
     const allGames = await response.json();
 
     const allScores = [];
@@ -166,7 +185,10 @@ export async function postTeams() {
 }
 
 export async function postScores() {
-  const scores = await getTodaysScores();
+
+  const todayDate = getTodaysDate()
+  const { date, _id, _type } = await getLatestUpdate();
+  const scores = await getTodaysScores(date);
   const { teams } = await getTeamsAndArchivedScores();
 
   const mutations = scores
@@ -198,10 +220,27 @@ export async function postScores() {
 
   try {
     console.log(mutations);
-    // const res = await postRequest({ mutations });
-    // const json = await res.json();
-    // console.log(json);
-    // return json;
+     const res = await postRequest({ mutations });
+     const json = await res.json();
+
+     const response = await postRequest({
+       mutations: [{
+         createOrReplace: {
+           _id,
+           _type,
+           date: todayDate,
+         }
+       }]
+     })
+
+    if (json.results.length) {
+      const json2 = await response.json();
+      console.log({hello: json2.results[0]})
+    }
+
+
+     console.log(json);
+     return json;
   } catch (error) {
     console.dir(error);
   }

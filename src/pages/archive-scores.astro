@@ -1,0 +1,23 @@
+---
+import { postScores } from '../util/mlb-api.js'
+
+const scoresPosted = await postScores()
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>Demo</title>
+	</head>
+	<body>
+  	<div style='display: flex; flex-direction: column; gap: 5px;'>
+    scores posted: {scoresPosted.results.map(({ document }) =>
+			<div>
+				<div>{document.name}</div>
+				<div>{document.items.filter(score => !score.key).length} Scores</div>
+			</div>)}
+		</div>
+	</body>
+</html>

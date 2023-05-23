@@ -4,9 +4,7 @@ import { HeaderDropdown } from '../components/header-dropdown.js'
 import { postScores, getTodaysScores, getTeamsAndArchivedScores} from '../util/mlb-api.js'
 import { namesFifty } from '../players/2023.js'
 
-
 const { teams, archivedScores} = await getTeamsAndArchivedScores();
-
 
 teams.sort((a, b) => {
 	if (a.name < b.name) {
@@ -18,11 +16,6 @@ teams.sort((a, b) => {
 	return 0
 })
 
-// await postScores()
- // const scores = await postScores();
-// Full Astro Component Syntax:
-// https://docs.astro.build/core-concepts/astro-components/
-
 ---
 
 <!DOCTYPE html>
@@ -32,7 +25,7 @@ teams.sort((a, b) => {
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0/dist/shoelace.js"></script>
-		<title>Demo</title>
+		<title>13 Run Pool - $50</title>
 	</head>
 	<body>
 		<HeaderDropdown selectedHeader="$50 13-Run" client:load></HeaderDropdown>
