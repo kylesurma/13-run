@@ -253,12 +253,6 @@ export class ThirteenRunTable extends LitElement {
             <span>${number}</span>
           </td>`;
     });
-
-    // if (missingNumbers.length === 1) {
-    //   const lastNumber = missingNumbers[0]
-    //   const td = this.shadowRoot.querySelector(`#${team}-${lastNumber}`)
-    //     td.style.backgroundColor = 'red'
-    // };
   }
 
   checkClass(name, num) {
