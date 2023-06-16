@@ -1,5 +1,7 @@
 import { postRequest, query } from "../pages/api.js";
 
+const startDate = "2023-06-15";
+
 export const mlbUrlByDateRange = (startDate, endDate) => {
   return `https://bdfed.stitch.mlbinfra.com/bdfed/transform-mlb-scoreboard?stitch_env=prod&sortTemplate=4&sportId=1&&sportId=51&startDate=${startDate}&endDate=${endDate}&gameType=E&&gameType=S&&gameType=R&&gameType=F&&gameType=D&&gameType=L&&gameType=W&&gameType=A&&gameType=C&language=en&leagueId=104&&leagueId=103&&leagueId=159&&leagueId=160&contextTeamId=`;
 };
@@ -7,25 +9,22 @@ export const mlbUrlByDateRange = (startDate, endDate) => {
 const getTodaysDate = () => {
   const todayDate = new Date();
 
-    todayDate.setMinutes(
-      todayDate.getMinutes() - todayDate.getTimezoneOffset()
-    );
-    return todayDate.toISOString().split("T")[0];
-}
+  todayDate.setMinutes(todayDate.getMinutes() - todayDate.getTimezoneOffset());
+  return todayDate.toISOString().split("T")[0];
+};
 export const getLatestUpdate = async () => {
   try {
     const res = await query(`*[ _type == "latest" ]`);
     const json = await res.json();
-    return json.result[0]
+    return json.result[0];
   } catch (error) {
     console.error(error);
   }
-}
+};
 
-export async function getTeamsAndArchivedScores(
-  startDate = "2023-05-06",
-  endDate = getTodaysDate()
-) {
+export async function getTeamsAndArchivedScores() {
+  const endDate = getTodaysDate();
+
   let teams;
   try {
     const res = await query(`*[ _type == "team" ]`);
@@ -35,7 +34,7 @@ export async function getTeamsAndArchivedScores(
     console.error(error);
   }
 
-    const { date } = await getLatestUpdate();
+  const { date } = await getLatestUpdate();
 
   let archivedScores = {};
 
@@ -113,9 +112,11 @@ const getMLBTeams = async () => {
 
 export const getTodaysScores = async (overideDate = "", isObject = false) => {
   try {
-    const todayDate = getTodaysDate()
+    const todayDate = getTodaysDate();
 
-    const response = await fetch(mlbUrlByDateRange(overideDate || todayDate, todayDate));
+    const response = await fetch(
+      mlbUrlByDateRange(overideDate || todayDate, todayDate)
+    );
     const allGames = await response.json();
 
     const allScores = [];
@@ -185,8 +186,7 @@ export async function postTeams() {
 }
 
 export async function postScores() {
-
-  const todayDate = getTodaysDate()
+  const todayDate = getTodaysDate();
   const { date, _id, _type } = await getLatestUpdate();
   const scores = await getTodaysScores(date);
   const { teams } = await getTeamsAndArchivedScores();
@@ -220,27 +220,28 @@ export async function postScores() {
 
   try {
     console.log(mutations);
-     const res = await postRequest({ mutations });
-     const json = await res.json();
+    const res = await postRequest({ mutations });
+    const json = await res.json();
 
-     const response = await postRequest({
-       mutations: [{
-         createOrReplace: {
-           _id,
-           _type,
-           date: todayDate,
-         }
-       }]
-     })
+    const response = await postRequest({
+      mutations: [
+        {
+          createOrReplace: {
+            _id,
+            _type,
+            date: todayDate,
+          },
+        },
+      ],
+    });
 
     if (json.results.length) {
       const json2 = await response.json();
-      console.log({hello: json2.results[0]})
+      console.log({ hello: json2.results[0] });
     }
 
-
-     console.log(json);
-     return json;
+    console.log(json);
+    return json;
   } catch (error) {
     console.dir(error);
   }
