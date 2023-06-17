@@ -158,7 +158,7 @@ export const namesHundred = {
   Rockies: "TONY T",
   Royals: "JANICE",
   Tigers: "DANNY K",
-  Twins: "MARY W",
+  Twins: "MARY W & KEVIN",
   "White Sox": "DD",
   Yankees: "DEWEY",
 };
