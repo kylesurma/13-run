@@ -14,6 +14,7 @@ export class ThirteenRunTable extends LitElement {
       height: 30px;
       width: 30px;
     }
+
     .table-container {
       overflow-x: scroll;
       overflow-y: hidden;
@@ -24,12 +25,14 @@ export class ThirteenRunTable extends LitElement {
       box-shadow: -7px 5px 20px 1px #000;
       border-radius: 10px;
     }
+
     table {
       border-collapse: separate;
       border-spacing: 0;
       height: 100%;
       background-color: transparent;
     }
+
     .team-logo {
       position: absolute;
       left: 3px;
@@ -40,6 +43,7 @@ export class ThirteenRunTable extends LitElement {
       background-color: antiquewhite;
       z-index: 5;
     }
+
     td {
       height: 50px;
       border-bottom: 0.05px antiquewhite solid;
@@ -54,6 +58,7 @@ export class ThirteenRunTable extends LitElement {
       box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
       text-align: center;
     }
+
     .number {
       position: relative;
       top: 0;
@@ -61,7 +66,7 @@ export class ThirteenRunTable extends LitElement {
       left: 0;
       right: 0;
     }
-    
+
     .player-name {
       min-width: 100px;
       background-color: dimgray;
@@ -71,7 +76,7 @@ export class ThirteenRunTable extends LitElement {
 
       text-shadow: 2px 2px 6px black;
     }
-    
+
     span {
       display: flex;
       font-family: "Roboto Mono", monospace;
@@ -94,22 +99,44 @@ export class ThirteenRunTable extends LitElement {
     }
     
     .check {
-      opacity: 0.5;
+      opacity: 0.7;
     }
-    
     .check::before {
       position: absolute;
       top: -22px;
       bottom: 0;
       left: 0;
       right: 0;
-      content: "✔";
-      font-size: 40px;
+      content: "✓";
+      font-size: 64px;
       color: red;
       line-height: 100px;
       text-align: center;
-      z-index: -1;
+      z-index: 1000;
     }
+
+    .is-last-number.number > span {
+      animation-name: color;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      border-radius: 5px;
+    }
+
+    @keyframes color {
+      0% {
+        background-color: beige;
+        border: 0.05px solid beige;
+      }
+      50% {
+        background-color: #ed6262;
+        border: 0.05px solid #ed6262;
+      }
+      100% {
+        background-color: beige;
+        border: 0.05px solid beige;
+      }
+    }
+
     @media only screen and (min-width: 850px) {
       .table-container {
         max-width: 795px;
@@ -121,12 +148,15 @@ export class ThirteenRunTable extends LitElement {
         display: flex;
         justify-content: center;
       }
+
       img {
       }
+
       .table-container {
         padding: 0 0 0 0;
-        max-width: 900px;
+        max-width: 890px;
       }
+
       .team-logo {
         position: relative;
         left: 0;
@@ -139,10 +169,10 @@ export class ThirteenRunTable extends LitElement {
     this.archivedScores = {};
     this.numbers = Array.from({ length: 14 }, (v, i) => [i]);
     this.showTeam = "";
-    this.seeAll = false
+    this.seeAll = false;
   }
 
-  firstUpdated(_changedProperties) {}
+  firstUpdated() {}
 
   render() {
     return !this.teams.length
@@ -181,6 +211,10 @@ export class ThirteenRunTable extends LitElement {
   }
 
   renderNumbers(team) {
+    const missingNumbers = this.numbers.filter(
+      (number) => this.archivedScores[team.name][number] === undefined
+    );
+
     return this.numbers.map((number) => {
       const gameInfo = this.archivedScores[team.name][number];
       const { opponent, date } = gameInfo || {};
@@ -202,18 +236,26 @@ export class ThirteenRunTable extends LitElement {
        vs 
        ${opponent}`;
 
+      const isLastNumber =
+        missingNumbers.length === 1 && missingNumbers[0] === number;
+
+      const id = `${team.name}-${number}`;
+
       return gameInfo
-        ? html` <td class="number ${number}">
+        ? html` <td class="number ${number}" id=${id}>
             <sl-tooltip
               content=${string}
               hoist
               .open=${this.showTeam === team.name}
             >
               <div class="check"></div>
-              <span class="active">${number}</span>
+              <span>${number}</span>
             </sl-tooltip>
           </td>`
-        : html` <td class="number ${number}">
+        : html` <td
+            class="number ${number} ${isLastNumber ? "is-last-number" : ""}"
+            id=${id}
+          >
             <span>${number}</span>
           </td>`;
     });

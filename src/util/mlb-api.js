@@ -35,9 +35,7 @@ export async function getTeamsAndArchivedScores(
     console.error(error);
   }
 
-    const { date } = await getLatestUpdate();
-
-    console.log(date);
+  const { date } = await getLatestUpdate();
 
   let archivedScores = {};
 
