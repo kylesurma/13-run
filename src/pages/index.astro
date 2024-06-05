@@ -2,7 +2,7 @@
 import { ThirteenRunTable } from '../components/thirteen-run-table.js'
 import { HeaderDropdown } from '../components/header-dropdown.js'
 import { postScores, getTodaysScores, getTeamsAndArchivedScores} from '../util/mlb-api.js'
-import { namesHundred } from '../players/2023.js'
+import { namesHundred } from '../players/2024.js'
 
 const { teams, archivedScores} = await getTeamsAndArchivedScores();
 
@@ -15,6 +15,8 @@ teams.sort((a, b) => {
 	}
 	return 0
 })
+
+console.log({teams})
 
 ---
 

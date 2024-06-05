@@ -23,7 +23,7 @@ export const getLatestUpdate = async () => {
 }
 
 export async function getTeamsAndArchivedScores(
-  startDate = "2023-05-06",
+  startDate = "2024-06-01",
   endDate = getTodaysDate()
 ) {
   let teams;
@@ -36,6 +36,8 @@ export async function getTeamsAndArchivedScores(
   }
 
     const { date } = await getLatestUpdate();
+
+    console.log(date);
 
   let archivedScores = {};
 

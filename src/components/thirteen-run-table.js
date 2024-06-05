@@ -61,6 +61,7 @@ export class ThirteenRunTable extends LitElement {
       left: 0;
       right: 0;
     }
+    
     .player-name {
       min-width: 100px;
       background-color: dimgray;
@@ -70,6 +71,7 @@ export class ThirteenRunTable extends LitElement {
 
       text-shadow: 2px 2px 6px black;
     }
+    
     span {
       display: flex;
       font-family: "Roboto Mono", monospace;
@@ -77,15 +79,24 @@ export class ThirteenRunTable extends LitElement {
       min-width: 30px;
       max-width: 50px;
       padding: 10px 10px 10px 10px;
-      border: 0.05px solid beige;
       border-radius: 5px;
       justify-content: center;
       background-color: beige;
       opacity: 1;
     }
+    
+    .active {
+      border: 1px solid beige;
+    }
+    
+     .active:hover {
+      border: 1px solid red;
+    }
+    
     .check {
       opacity: 0.5;
     }
+    
     .check::before {
       position: absolute;
       top: -22px;
@@ -114,7 +125,7 @@ export class ThirteenRunTable extends LitElement {
       }
       .table-container {
         padding: 0 0 0 0;
-        max-width: 890px;
+        max-width: 900px;
       }
       .team-logo {
         position: relative;
@@ -199,7 +210,7 @@ export class ThirteenRunTable extends LitElement {
               .open=${this.showTeam === team.name}
             >
               <div class="check"></div>
-              <span>${number}</span>
+              <span class="active">${number}</span>
             </sl-tooltip>
           </td>`
         : html` <td class="number ${number}">
