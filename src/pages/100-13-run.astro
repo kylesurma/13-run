@@ -4,9 +4,8 @@ import { HeaderDropdown } from '../components/header-dropdown.js'
 import { SeventhInningStretch } from '../components/seventh-inning-stretch.js'
 import { postScores, getTodaysScores, getTeamsAndArchivedScores} from '../util/mlb-api.js'
 import { namesHundred } from '../players/2024.js'
-import { isIntermission } from './api'
 
-const isIntermission = import.meta.env.INTERMISSION === 'true'
+const isIntermission = true
 
 const { teams, archivedScores} = await getTeamsAndArchivedScores();
 
