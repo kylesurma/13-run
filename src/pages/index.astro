@@ -1,8 +1,11 @@
 ---
 import { ThirteenRunTable } from '../components/thirteen-run-table.js'
 import { HeaderDropdown } from '../components/header-dropdown.js'
+import { SeventhInningStretch } from '../components/seventh-inning-stretch.js'
 import { postScores, getTodaysScores, getTeamsAndArchivedScores} from '../util/mlb-api.js'
 import { namesHundred } from '../players/2024.js'
+
+const isIntermission = import.meta.env.INTERMISSION === 'true'
 
 const { teams, archivedScores} = await getTeamsAndArchivedScores();
 
@@ -16,7 +19,7 @@ teams.sort((a, b) => {
 	return 0
 })
 
-console.log({teams})
+// console.log({teams})
 
 ---
 
@@ -31,7 +34,9 @@ console.log({teams})
 		<title>13 Run Pool - $100</title>
 	</head>
 	<body>
-		<HeaderDropdown selectedHeader="$100 13-Run" client:load></HeaderDropdown>
-	<ThirteenRunTable players={namesHundred} teams={teams} archivedScores={archivedScores} client:load />
+	{ isIntermission
+		? <SeventhInningStretch></SeventhInningStretch>
+		: (<HeaderDropdown selectedHeader="$100 13-Run" client:load></HeaderDropdown>
+	<ThirteenRunTable players={namesHundred} teams={teams} archivedScores={archivedScores} client:load />)}
 	</body>
 </html>
