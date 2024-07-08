@@ -1,4 +1,4 @@
-export const namesFifty = {
+ const namesFiftyRoundOne = {
   "Angels": "BARB A",
   "Astros": "JUDY",
   "Athletics": "JOE W",
@@ -31,7 +31,40 @@ export const namesFifty = {
   "Yankees": "RDS"
 };
 
-export const namesHundred = {
+export const namesFifty ={
+  "Angels": "DIANE S",
+  "Astros": "MARY W",
+  "Athletics": "VIVIAN (DIANE)",
+  "Blue Jays": "JANICE P",
+  "Braves": "JC",
+  "Brewers": "TONY T",
+  "Cardinals": "MIKE C",
+  "Cubs": "NICK B",
+  "D-backs": "BARB A",
+  "Dodgers": "BARB A",
+  "Giants": "NICOLE",
+  "Guardians": "RDS",
+  "Mariners": "JOE W",
+  "Marlins": "PEG & GERALD",
+  "Mets": "JUDY",
+  "Nationals": "DEWEY",
+  "Orioles": "DD",
+  "Padres": "TRICIA",
+  "Phillies": "BARB M",
+  "Pirates": "AED",
+  "Rangers": "MIKE M",
+  "Rays": "KERI",
+  "Red Sox": "BB",
+  "Reds": "TOM F",
+  "Rockies": "KATIE & LOU",
+  "Royals": "CARA",
+  "Tigers": "MARGARET K",
+  "Twins": "DANIELLE",
+  "White Sox": "JOAN D",
+  "Yankees": "ADMON"
+}
+
+const namesHundredRoundOne = {
   "Angels": "CHOCOLATE",
   "Astros": "TONY T",
   "Athletics": "BG",
@@ -63,3 +96,36 @@ export const namesHundred = {
   "White Sox": "JOAN D",
   "Yankees": "MAT"
 };
+
+export const namesHundred = {
+  "Angels": "CARA",
+  "Astros": "MAT",
+  "Athletics": "CHOCOLATE",
+  "Blue Jays": "TNK",
+  "Braves": "MIKE C",
+  "Brewers": "PEG & GERALD",
+  "Cardinals": "BB",
+  "Cubs": "LORI B",
+  "D-backs": "DANIELLE K",
+  "Dodgers": "MARY W",
+  "Giants": "TOM F",
+  "Guardians": "JOE W",
+  "Mariners": "DEWEY",
+  "Marlins": "NICOLE",
+  "Mets": "JANICE",
+  "Nationals": "KERI",
+  "Orioles": "TONY T",
+  "Padres": "ADMON",
+  "Phillies": "JUDY",
+  "Pirates": "GRAPHICS GUY",
+  "Rangers": "DD",
+  "Rays": "TRICIA",
+  "Red Sox": "JW",
+  "Reds": "JKS",
+  "Rockies": "BRIAN B",
+  "Royals": "AED",
+  "Tigers": "JOAN D",
+  "Twins": "ANGELA S",
+  "White Sox": "DANNY K",
+  "Yankees": "BOOYA"
+}
