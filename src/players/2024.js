@@ -35,7 +35,7 @@ export const namesFifty ={
   "Angels": "DIANE S",
   "Astros": "MARY W",
   "Athletics": "VIVIAN (DIANE)",
-  "Blue Jays": "JANICE P",
+  "Blue Jays": "JANICE",
   "Braves": "JC",
   "Brewers": "TONY T",
   "Cardinals": "MIKE C",
