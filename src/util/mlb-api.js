@@ -192,7 +192,8 @@ export async function postScores() {
   const { teams } = await getTeamsAndArchivedScores();
 
   const mutations = scores
-    .map((scoreObj, i) => {
+      .filter((scoreObj) => !scoreObj.team.includes('All-Stars'))
+      .map((scoreObj, i) => {
       const { team, opponent, score, date, gamePk } = scoreObj;
       const teamObj = teams.find((teamObj) => teamObj.name === team);
       const id = teamObj._id;
