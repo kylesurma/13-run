@@ -9,7 +9,7 @@ export class SeventhInningStretch extends LitElement {
   render() {
     return html`
     <div class="seventh-inning-stretch">
-      <h1>Building Next Session</h1>
+      <h1>We'll See You Next Season!</h1>
     </div>
     `
   }

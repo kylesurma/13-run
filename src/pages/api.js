@@ -10,6 +10,7 @@ const ver = import.meta.env.SAN_VER;
 const dataset = import.meta.env.SAN_DATASET;
 const sanityToken = import.meta.env.SAN_TOKEN;
 const JWTToken = import.meta.env.JWT;
+export const  isIntermission = import.meta.env.INTERMISSION === 'on'
 
 export const query = (query) => {
   const encodedQuery = encodeURI(query);
