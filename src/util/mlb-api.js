@@ -24,7 +24,7 @@ export const getLatestUpdate = async () => {
 }
 
 export async function getTeamsAndArchivedScores(
-  startDate = "2024-07-07",
+  startDate = "2025-03-27",
   endDate = getTodaysDate()
 ) {
   let teams;
@@ -246,4 +246,26 @@ export async function postScores() {
   } catch (error) {
     console.dir(error);
   }
+}
+
+export const manuallyUpdateDate = async (dateString) => {
+  const todayDate = getTodaysDate()
+
+  const { date, _id, _type } = await getLatestUpdate();
+
+  console.log({ date, _id, _type });
+
+  const response = await postRequest({
+    mutations: [{
+      createOrReplace: {
+        _id,
+        _type,
+        date: dateString || todayDate
+      }
+    }]
+  })
+
+  const json = await response.json();
+  console.log(json);
+  return json;
 }

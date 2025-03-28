@@ -3,7 +3,7 @@ import { ThirteenRunTable } from '../components/thirteen-run-table.js'
 import { HeaderDropdown } from '../components/header-dropdown.js'
 import { SeventhInningStretch } from '../components/seventh-inning-stretch.js'
 import { postScores, getTodaysScores, getTeamsAndArchivedScores} from '../util/mlb-api.js'
-import { namesFifty } from '../players/2024.js'
+import { namesFifty } from '../players/2025.js'
 import { isIntermission } from './api.js'
 
 const { teams, archivedScores} = !isIntermission ? await getTeamsAndArchivedScores() : { teams: [], archivedScores: [] }
