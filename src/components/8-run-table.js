@@ -17,9 +17,9 @@ export class EightRunTable extends LitElement {
     .team-grid-container {
       display: grid;
       gap: 10px;
-      padding: 50px;
+      padding: 25px;
       justify-items: center;
-      grid-template-columns: repeat(1, 1fr);
+      grid-template-columns: repeat(2, 1fr);
     }
     .team-container {
       width: 100px;
@@ -54,6 +54,7 @@ export class EightRunTable extends LitElement {
     @media (min-width: 600px) {
       .team-grid-container {
         grid-template-columns: repeat(2, 1fr);
+        padding: 50px;
       }
     }
 
@@ -61,6 +62,7 @@ export class EightRunTable extends LitElement {
     @media (min-width: 768px) {
       .team-grid-container {
         grid-template-columns: repeat(3, 1fr);
+        padding: 50px;
       }
     }
 
@@ -68,6 +70,7 @@ export class EightRunTable extends LitElement {
     @media (min-width: 1024px) {
       .team-grid-container {
         grid-template-columns: repeat(5, 1fr);
+        padding: 50px;
       }
     }
   `;
