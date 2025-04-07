@@ -2,11 +2,11 @@
 import { ThirteenRunTable } from '../components/thirteen-run-table.js'
 import { HeaderDropdown } from '../components/header-dropdown.js'
 import { SeventhInningStretch } from '../components/seventh-inning-stretch.js'
-import { postScores, getTodaysScores, getTeamsAndArchivedScores} from '../util/mlb-api.js'
+import { postScores, getTodaysScores, getTeamsAndArchivedScores, thirteenStart} from '../util/mlb-api.js'
 import { namesHundred } from '../players/2025.js'
 import { isIntermission } from './api.js'
 
-const { teams, archivedScores} = !isIntermission ? await getTeamsAndArchivedScores() : { teams: [], archivedScores: [] }
+const { teams, archivedScores} = !isIntermission ? await getTeamsAndArchivedScores(thirteenStart) : { teams: [], archivedScores: [] }
 
 teams.sort((a, b) => {
 	if (a.name < b.name) {
@@ -17,6 +17,8 @@ teams.sort((a, b) => {
 	}
 	return 0
 })
+
+await postScores()
 
 ---
 

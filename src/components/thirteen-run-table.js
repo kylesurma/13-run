@@ -89,15 +89,15 @@ export class ThirteenRunTable extends LitElement {
       background-color: beige;
       opacity: 1;
     }
-    
+
     .active {
       border: 1px solid beige;
     }
-    
-     .active:hover {
+
+    .active:hover {
       border: 1px solid red;
     }
-    
+
     .check {
       opacity: 0.7;
     }
@@ -175,6 +175,7 @@ export class ThirteenRunTable extends LitElement {
   firstUpdated() {}
 
   render() {
+    console.log("table rendered");
     return !this.teams.length
       ? nothing
       : html`
@@ -212,7 +213,7 @@ export class ThirteenRunTable extends LitElement {
 
   renderNumbers(team) {
     const missingNumbers = this.numbers.filter(
-      (number) => this.archivedScores[team.name][number] === undefined
+      (number) => this.archivedScores[team.name][number] === undefined,
     );
 
     return this.numbers.map((number) => {

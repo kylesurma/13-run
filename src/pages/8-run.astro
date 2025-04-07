@@ -1,0 +1,41 @@
+---
+import { EightRunTable } from '../components/8-run-table.js'
+import { HeaderDropdown } from '../components/header-dropdown.js'
+import { SeventhInningStretch } from '../components/seventh-inning-stretch.js'
+import { postScores, getTodaysScores, getTeamsAndArchivedScores, eightStart} from '../util/mlb-api.js'
+import { namesEightRun } from '../players/2025.js'
+import { isIntermission } from './api.js'
+
+const { teams, archivedScores} = !isIntermission ? await getTeamsAndArchivedScores(eightStart) : { teams: [], archivedScores: [] }
+
+teams.sort((a, b) => {
+    if (a.name < b.name) {
+        return -1
+    }
+    if (a.name > b.name) {
+        return 1
+    }
+    return 0
+})
+
+await postScores()
+
+---
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0/dist/shoelace.js"></script>
+    <title>8 Run Out</title>
+</head>
+<body>
+{ isIntermission
+    ? <SeventhInningStretch></SeventhInningStretch>
+    : (<HeaderDropdown selectedHeader="8 Run Out" client:load></HeaderDropdown>
+                <EightRunTable players={namesEightRun} teams={teams} archivedScores={archivedScores} client:load />)}
+</body>
+</html>

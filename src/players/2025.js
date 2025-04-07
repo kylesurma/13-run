@@ -64,3 +64,36 @@ export const namesHundred = {
     "Yankees": "ANNIE & PETER G"
 };
 
+export const namesEightRun = {
+    "Angels": "KERI",
+    "Astros": "GEM",
+    "Athletics": "ANGELA S",
+    "Blue Jays": "ANNIE & PETER G",
+    "Braves": "JW",
+    "Brewers": "JACKIE",
+    "Cardinals": "JUDY",
+    "Cubs": "JOAN & JACK",
+    "D-backs": "DANIELLE K",
+    "Dodgers": "BOOYA",
+    "Giants": "CHOCOLATE",
+    "Guardians": "MARY W",
+    "Mariners": "PEG & GERALD",
+    "Marlins": "BB",
+    "Mets": "NIK",
+    "Nationals": "KATIE & LOU",
+    "Orioles": "MIKE C",
+    "Padres": "GRAPHICS GUY",
+    "Phillies": "GROUCH",
+    "Pirates": "TONY T",
+    "Rangers": "JW",
+    "Rays": "TRICIA",
+    "Red Sox": "LORI B",
+    "Reds": "ATM",
+    "Rockies": "BB",
+    "Royals": "PETER P",
+    "Tigers": "MARGARET K",
+    "Twins": "ADMON",
+    "White Sox": "BB",
+    "Yankees": "DEWEY"
+}
+
