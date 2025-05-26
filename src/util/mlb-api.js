@@ -4,8 +4,8 @@ export const mlbUrlByDateRange = (startDate, endDate) => {
   return `https://bdfed.stitch.mlbinfra.com/bdfed/transform-mlb-scoreboard?stitch_env=prod&sortTemplate=4&sportId=1&&sportId=51&startDate=${startDate}&endDate=${endDate}&gameType=E&&gameType=S&&gameType=R&&gameType=F&&gameType=D&&gameType=L&&gameType=W&&gameType=A&&gameType=C&language=en&leagueId=104&&leagueId=103&&leagueId=159&&leagueId=160&contextTeamId=`;
 };
 
-export const thirteenStart = "2025-03-27";
-export const eightStart = "2025-03-27";
+export const thirteenStart = "2025-05-26";
+export const eightStart = "2025-05-26";
 
 const getTodaysDate = (daysBack = 0) => {
   const todayDate = new Date();
@@ -40,9 +40,16 @@ export async function getTeamsAndArchivedScores(
 
   const { date } = await getLatestUpdate();
 
+  const checkBeforeDate = (startDate, currentDate) => {
+    const startDay = +startDate.split('-')[2]
+    const endDay = +currentDate.split('-')[2]
+
+    return endDay < startDay ? startDate : currentDate;
+  }
+
   let archivedScores = {};
 
-  const todayScores = await getTodaysScores(date, true);
+  const todayScores = await getTodaysScores(checkBeforeDate(thirteenStart, date), true);
 
   teams.forEach((team) => {
     archivedScores[team.name] = {};
@@ -204,7 +211,7 @@ export async function postScores() {
       const teamObj = teams.find((teamObj) => teamObj.name === team);
       const id = teamObj._id;
 
-      if (teamObj.items.some((item) => item.gamePk === gamePk)) return;
+      if (teamObj.items.some((item) => item.gamePk === gamePk || score === null)) return;
 
       return {
         patch: {
