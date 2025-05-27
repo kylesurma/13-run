@@ -41,8 +41,8 @@ export async function getTeamsAndArchivedScores(
   const { date } = await getLatestUpdate();
 
   const checkBeforeDate = (startDate, currentDate) => {
-    const startDay = +startDate.split('-')[2]
-    const endDay = +currentDate.split('-')[2]
+    const startDay = +startDate.split('-').join('')
+    const endDay = +currentDate.split('-').join('')
 
     return endDay < startDay ? startDate : currentDate;
   }
