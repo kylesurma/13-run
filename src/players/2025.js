@@ -31,7 +31,7 @@ const namesFiftyRoundOne = {
   Yankees: "DEWEY",
 };
 
-export const namesFifty = {
+export const namesFiftyRoundTwo = {
   "Angels": "PEG & GERALD",
   "Astros": "TONY T",
   "Athletics": "TOM F",
@@ -97,7 +97,7 @@ const namesHundredFirstRound = {
   Yankees: "ANNIE & PETER G",
 };
 
-export const namesHundred = {
+export const namesHundredRoundTwo = {
   "Angels": "BOOYA",
   "Astros": "ADMON",
   "Athletics": "TONY T",
@@ -195,3 +195,69 @@ export const namesEightRun = {
   "White Sox": "BB",
   "Yankees": "KATIE & LOU"
 };
+
+export const namesHundred = {
+  "Angels": "TOM F",
+  "Astros": "ANGELA S",
+  "Athletics": "BB",
+  "Blue Jays": "PETER P",
+  "Braves": "ADMON",
+  "Brewers": "TONY T",
+  "Cardinals": "JOAN & JACK",
+  "Cubs": "JOR W",
+  "D-backs": "DANIELLE K",
+  "Dodgers": "MIKE C",
+  "Giants": "NICOLE",
+  "Guardians": "AT",
+  "Mariners": "JANICE & ROSS",
+  "Marlins": "GROUCH",
+  "Mets": "DD",
+  "Nationals": "JACKIE",
+  "Orioles": "BB",
+  "Padres": "LORI B",
+  "Phillies": "JUDY",
+  "Pirates": "JC",
+  "Rangers": "CARA",
+  "Rays": "MT",
+  "Red Sox": "BOOYA",
+  "Reds": "CHOCOLATE",
+  "Rockies": "ANNIE & PETER G",
+  "Royals": "TRICIA",
+  "Tigers": "GRAPHICS GUY",
+  "Twins": "PEG & GERALD",
+  "White Sox": "KERI",
+  "Yankees": "DEWEY"
+}
+
+export const namesFifty = {
+  "Angels": "JACKIE",
+  "Astros": "BARBARA A",
+  "Athletics": "JUDY",
+  "Blue Jays": "PEG & GERALD",
+  "Braves": "MIKE C",
+  "Brewers": "CHOCOLATE",
+  "Cardinals": "RYAN B",
+  "Cubs": "TONY T",
+  "D-backs": "MARGARET K",
+  "Dodgers": "MIKE P",
+  "Giants": "BB",
+  "Guardians": "DEWEY",
+  "Mariners": "NICOLE",
+  "Marlins": "DANIELLE K",
+  "Mets": "KERI",
+  "Nationals": "NICK B",
+  "Orioles": "DIANE S",
+  "Padres": "KATIE & LOU",
+  "Phillies": "TOM F",
+  "Pirates": "JANICE & ROSS",
+  "Rangers": "JOAN & JACK",
+  "Rays": "CARA",
+  "Red Sox": "DD",
+  "Reds": "JOE W",
+  "Rockies": "ADMON",
+  "Royals": "ANGELA S",
+  "Tigers": "PETER P",
+  "Twins": "BARBARA M",
+  "White Sox": "TRICIA",
+  "Yankees": "VIVIAN (DIANE)"
+}
