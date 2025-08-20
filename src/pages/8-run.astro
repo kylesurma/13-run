@@ -6,7 +6,7 @@ import { postScores, getTodaysScores, getTeamsAndArchivedScores, eightStart} fro
 import { namesEightRun } from '../players/2025.js'
 import { isIntermission } from './api.js'
 
-const { teams, archivedScores} = !isIntermission ? await getTeamsAndArchivedScores(eightStart) : { teams: [], archivedScores: [] }
+const { teams, archivedScores} = !!isIntermission ? await getTeamsAndArchivedScores(eightStart) : { teams: [], archivedScores: [] }
 
 teams.sort((a, b) => {
     if (a.name < b.name) {
