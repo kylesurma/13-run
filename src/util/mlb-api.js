@@ -289,5 +289,3 @@ export const getSomeDate = () => {
   const date = getTodaysDate()
   console.log(date)
 }
-
-manuallyUpdateDate()
