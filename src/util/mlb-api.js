@@ -4,8 +4,8 @@ export const mlbUrlByDateRange = (startDate, endDate) => {
   return `https://bdfed.stitch.mlbinfra.com/bdfed/transform-mlb-scoreboard?stitch_env=prod&sortTemplate=4&sportId=1&&sportId=51&startDate=${startDate}&endDate=${endDate}&gameType=E&&gameType=S&&gameType=R&&gameType=F&&gameType=D&&gameType=L&&gameType=W&&gameType=A&&gameType=C&language=en&leagueId=104&&leagueId=103&&leagueId=159&&leagueId=160&contextTeamId=`;
 };
 
-export const thirteenStart = "2025-07-07";
-export const eightStart = "2025-07-24";
+export const thirteenStart = "2026-03-25";
+export const eightStart = "2026-03-25";
 
 const getTodaysDate = (daysBack = 0) => {
   const todayDate = new Date();
@@ -26,7 +26,7 @@ export const getLatestUpdate = async () => {
 };
 
 export async function getTeamsAndArchivedScores(
-  startDate = "2025-03-27",
+  startDate = "2026-03-25",
   endDate = getTodaysDate(),
 ) {
   let teams;
@@ -260,26 +260,34 @@ export async function postScores() {
 
 export const manuallyUpdateDate = async (dateString) => {
   const todayDate = getTodaysDate();
-
+console.log(todayDate);
   const { date, _id, _type } = await getLatestUpdate();
+  console.log(date);
 
-  const response = await postRequest({
-    mutations: [
-      {
-        createOrReplace: {
-          _id,
-          _type,
-          date: dateString || todayDate,
+  try {
+
+    const response = await postRequest({
+      mutations: [
+        {
+          createOrReplace: {
+            _id,
+            _type,
+            date: dateString || todayDate,
+          },
         },
-      },
-    ],
-  });
+      ],
+    });
 
-  const json = await response.json();
-  return json;
+    const json = await response.json();
+    return json;
+  } catch (error) {
+    console.dir(error);
+  }
 };
 
 export const getSomeDate = () => {
   const date = getTodaysDate()
   console.log(date)
 }
+
+console.log(await manuallyUpdateDate())
