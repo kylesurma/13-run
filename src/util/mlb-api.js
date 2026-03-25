@@ -290,4 +290,4 @@ export const getSomeDate = () => {
   console.log(date)
 }
 
-console.log(await manuallyUpdateDate())
+manuallyUpdateDate()
