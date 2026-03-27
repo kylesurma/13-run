@@ -200,7 +200,7 @@ export class ThirteenRunTable extends LitElement {
                       />
                     </th>
                     <td class="player-name">
-                      <p>${this.players[team.name]}</p>
+                      <p>${this.getPlayer(team.name)}</p>
                     </td>
                     ${this.renderNumbers(team)}
                   </tr>
@@ -269,6 +269,24 @@ export class ThirteenRunTable extends LitElement {
     ) {
       return "check";
     }
+  }
+
+  // Safe lookup for player name to handle different key formats/casing
+  getPlayer(name) {
+    if (!this.players) return "";
+    if (this.players[name]) return this.players[name];
+    const lowerKey = name.toLowerCase();
+    if (this.players[lowerKey]) return this.players[lowerKey];
+    const titleKey = name
+      .split(" ")
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+      .join(" ");
+    if (this.players[titleKey]) return this.players[titleKey];
+
+    const fuzzy = Object.keys(this.players).find(
+      (k) => k.replace(/[^a-zA-Z]/g, "").toLowerCase() === name.replace(/[^a-zA-Z]/g, "").toLowerCase(),
+    );
+    return fuzzy ? this.players[fuzzy] : "";
   }
 }
 

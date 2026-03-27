@@ -84,6 +84,7 @@ export class EightRunTable extends LitElement {
   }
 
   render() {
+    console.log(this.teams);
     return !this.teams.length
       ? nothing
       : html`
@@ -118,7 +119,7 @@ export class EightRunTable extends LitElement {
                       }}
                     />
                   </div>
-                  <div class="team-name"><p>${this.players[team.name]}</p></div>
+                  <div class="team-name"><p>${this.getPlayer(team.name)}</p></div>
                 </div>
               `;
             })}
@@ -145,6 +146,28 @@ export class EightRunTable extends LitElement {
     return `On ${formattedDate}
        vs
        ${opponent}`;
+  }
+
+  // Safe lookup for player name to handle different key formats/casing
+  getPlayer(name) {
+    if (!this.players) return "";
+    // direct match
+    if (this.players[name]) return this.players[name];
+    // lowercase keys
+    const lowerKey = name.toLowerCase();
+    if (this.players[lowerKey]) return this.players[lowerKey];
+    // normalized title case
+    const titleKey = name
+      .split(" ")
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+      .join(" ");
+    if (this.players[titleKey]) return this.players[titleKey];
+
+    // fallback to any key matching when spaces/dashes differ
+    const fuzzy = Object.keys(this.players).find(
+      (k) => k.replace(/[^a-zA-Z]/g, "").toLowerCase() === name.replace(/[^a-zA-Z]/g, "").toLowerCase(),
+    );
+    return fuzzy ? this.players[fuzzy] : "";
   }
 }
 

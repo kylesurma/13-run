@@ -49,7 +49,9 @@ export async function getTeamsAndArchivedScores(
 
   let archivedScores = {};
 
-  const todayScores = await getTodaysScores(checkBeforeDate(thirteenStart, date), true);
+  // Use the provided startDate parameter so callers can request archived scores
+  // beginning at different dates (e.g., eightStart vs thirteenStart).
+  const todayScores = await getTodaysScores(checkBeforeDate(startDate, date), true);
 
   teams.forEach((team) => {
     archivedScores[team.name] = {};
