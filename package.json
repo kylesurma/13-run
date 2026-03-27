@@ -10,6 +10,9 @@
     "preview": "astro preview",
     "astro": "astro"
   },
+  "engines": {
+    "node": "22.15.0"
+  },
   "dependencies": {
     "@astrojs/lit": "^4.3.0",
     "@astrojs/netlify": "^7.0.5",
