@@ -11,13 +11,13 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/lit": "^2.0.2",
-    "@astrojs/netlify": "^2.2.3",
+    "@astrojs/lit": "^4.3.0",
+    "@astrojs/netlify": "^7.0.5",
     "@webcomponents/template-shadowroot": "^0.2.1",
-    "astro": "^2.5.2",
-    "bcryptjs": "^2.4.3",
-    "jsonwebtoken": "^9.0.0",
-    "lit": "^2.7.4",
-    "prettier": "^3.5.3"
+    "astro": "^6.1.1",
+    "bcryptjs": "^3.0.3",
+    "jsonwebtoken": "^9.0.3",
+    "lit": "^3.3.2",
+    "prettier": "^3.8.1"
   }
 }

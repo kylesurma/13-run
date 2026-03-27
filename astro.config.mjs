@@ -1,6 +1,6 @@
 import { defineConfig } from "astro/config";
 import lit from "@astrojs/lit";
-import netlify from '@astrojs/netlify/functions';
+import netlify from '@astrojs/netlify';
 
 
 // https://astro.build/config
