@@ -3,7 +3,7 @@
 
 export const namesHundred = {
   "Angels": "LORI B",
-  "Astros": "PETER + ANN MARIE",
+  "Astros": "PETER + ANNIE",
   "Athletics": "LAURA C",
   "Blue Jays": "JEEK",
   "Braves": "BOOYA",
@@ -78,7 +78,7 @@ export const namesEightRun = {
   "Cubs": "LAURA C",
   "D-backs": "KATE",
   "Dodgers": "JOE W",
-  "Giants": "PETER + ANN MARIE",
+  "Giants": "PETER + ANNIE",
   "Guardians": "DENISE P",
   "Mariners": "BILLY B",
   "Marlins": "CHOCOLATE",
