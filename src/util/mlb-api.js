@@ -5,7 +5,7 @@ export const mlbUrlByDateRange = (startDate, endDate) => {
 };
 
 export const thirteenStart = "2026-03-25";
-export const eightStart = "2026-03-25";
+export const eightStart = "2026-05-24";
 
 const getTodaysDate = (daysBack = 0) => {
   const todayDate = new Date();
@@ -40,6 +40,8 @@ export async function getTeamsAndArchivedScores(
 
   const { date } = await getLatestUpdate();
 
+  console.log({date});
+
   const checkBeforeDate = (startDate, currentDate) => {
     const startDay = +startDate.split('-').join('')
     const endDay = +currentDate.split('-').join('')
@@ -51,7 +53,7 @@ export async function getTeamsAndArchivedScores(
 
   // Use the provided startDate parameter so callers can request archived scores
   // beginning at different dates (e.g., eightStart vs thirteenStart).
-  const todayScores = await getTodaysScores(checkBeforeDate(startDate, date), true);
+  const todayScores = await getTodaysScores(checkBeforeDate(startDate, date), true, endDate);
 
   teams.forEach((team) => {
     archivedScores[team.name] = {};
@@ -121,12 +123,12 @@ const getMLBTeams = async () => {
   return allTeams;
 };
 
-export const getTodaysScores = async (overideDate = "", isObject = false) => {
+export const getTodaysScores = async (overideDate = "", isObject = false, overrideEndDate = '') => {
   try {
     const todayDate = getTodaysDate();
 
     const response = await fetch(
-      mlbUrlByDateRange(overideDate || todayDate, todayDate),
+      mlbUrlByDateRange(overideDate || todayDate, overrideEndDate || todayDate),
     );
     const allGames = await response.json();
 
@@ -196,14 +198,14 @@ export async function postTeams() {
   }
 }
 
-export async function postScores() {
-  const yesterday = getTodaysDate(1);
+export async function postScores(overideDate = "") {
+  const yesterday = overideDate || getTodaysDate(1);
   console.log({ yesterday });
   const { date: storedDate, _id, _type } = await getLatestUpdate();
 
   if (yesterday === storedDate) return { message: "Already updated", results: [] };
 
-  const scores = await getTodaysScores(storedDate);
+  const scores = await getTodaysScores(storedDate, false, yesterday);
   const { teams } = await getTeamsAndArchivedScores();
 
   const mutations = scores

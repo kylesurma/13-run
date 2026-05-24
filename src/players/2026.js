@@ -67,7 +67,7 @@ export const namesFifty = {
   "Yankees": "TARA",
 };
 
-export const namesEightRun = {
+export const namesEightRunRoundOne = {
   "Angels": "JOAN D",
   "Astros": "KYLE",
   "Athletics": "PEG + GERALD",
@@ -97,6 +97,41 @@ export const namesEightRun = {
   "Tigers": "JEEK",
   "Twins": "NICOLE",
   "White Sox": "DEWEY",
+  "Yankees": "TIME BOMB",
+};
+
+// Round two: same team order; every team is assigned a different name than
+// round one and all 30 names from round one are reused exactly once.
+export const namesEightRun = {
+  "Angels": "JACKIE F",
+  "Astros": "PEG + GERALD",
+  "Athletics": "DANIELLE",
+  "Blue Jays": "KERI",
+  "Braves": "BOOYA",
+  "Brewers": "MARG K",
+  "Cardinals": "LAURA C",
+  "Cubs": "KATE",
+  "D-backs": "JOE W",
+  "Dodgers": "PETER + ANNIE",
+  "Giants": "DENISE P",
+  "Guardians": "BILLY B",
+  "Mariners": "CHOCOLATE",
+  "Marlins": "LORI B",
+  "Mets": "ADMON",
+  "Nationals": "TONY T",
+  "Orioles": "KAMI",
+  "Padres": "KATIE + LOU",
+  "Phillies": "ANGELA",
+  "Pirates": "MKW",
+  "Rangers": "SUE B",
+  "Rays": "TRICIA",
+  "Red Sox": "Kyle",
+  "Reds": "JUDY",
+  "Rockies": "DANNY K",
+  "Royals": "JANICE + ROSS",
+  "Tigers": "NICOLE",
+  "Twins": "DEWEY",
+  "White Sox": "JOAN D",
   "Yankees": "TIME BOMB",
 };
 
