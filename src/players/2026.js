@@ -1,7 +1,7 @@
 // 2026 player assignments
 // Generated to match the pattern used in 2025.js
 
-export const namesHundred = {
+export const namesHundredRoundOne = {
   "Angels": "LORI B",
   "Astros": "PETER + ANNIE",
   "Athletics": "LAURA C",
@@ -34,7 +34,42 @@ export const namesHundred = {
   "Yankees": "DANNY K",
 };
 
-export const namesFifty = {
+// Round two: randomized Fisher-Yates-style shuffle (derangement) so no team
+// keeps the same name as RoundOne and every name is used exactly once.
+export const namesHundred = {
+  "Angels": "NICOLE",
+  "Astros": "KATELYN",
+  "Athletics": "DONNY D",
+  "Blue Jays": "ADMON",
+  "Braves": "KAMI",
+  "Brewers": "DEWEY",
+  "Cardinals": "CARA",
+  "Cubs": "JOAN D",
+  "D-backs": "JUDY",
+  "Dodgers": "ANGELA S",
+  "Giants": "JACKIE F",
+  "Guardians": "TOM F",
+  "Mariners": "KATE",
+  "Marlins": "BILLY B",
+  "Mets": "KYLE",
+  "Nationals": "PEG + GERALD",
+  "Orioles": "DANIELLE",
+  "Padres": "KERI",
+  "Phillies": "TRICIA",
+  "Pirates": "MKW",
+  "Rangers": "TONY T",
+  "Rays": "JOE W",
+  "Red Sox": "DANNY K",
+  "Reds": "LORI B",
+  "Rockies": "PETER + ANNIE",
+  "Royals": "LAURA C",
+  "Tigers": "JANICE + ROSS",
+  "Twins": "BOOYA",
+  "White Sox": "SUE B",
+  "Yankees": "BARB A",
+};
+
+export const namesFiftyRoundOne = {
   "Angels": "JOE W",
   "Astros": "JUDY",
   "Athletics": "DEWEY",
@@ -65,6 +100,41 @@ export const namesFifty = {
   "Twins": "KATE",
   "White Sox": "KATIE + LOU",
   "Yankees": "TARA",
+};
+
+// Round two: randomized Fisher-Yates-style shuffle (derangement) so no team
+// keeps the same name as RoundOne and every name is used exactly once.
+export const namesFifty = {
+  "Angels": "ADMON",
+  "Astros": "RYAN VB",
+  "Athletics": "DENISE P",
+  "Blue Jays": "TOM F",
+  "Braves": "DIANE S",
+  "Brewers": "PEG + GERALD",
+  "Cardinals": "CARA",
+  "Cubs": "BARB M",
+  "D-backs": "BILLY B",
+  "Dodgers": "DONNY D",
+  "Giants": "NICOLE",
+  "Guardians": "MAT",
+  "Mariners": "MKW",
+  "Marlins": "MARG K",
+  "Mets": "MIKE P",
+  "Nationals": "ANGELA S",
+  "Orioles": "TONY T",
+  "Padres": "AJ",
+  "Phillies": "KERI",
+  "Pirates": "MIKE M",
+  "Rangers": "KATE",
+  "Rays": "KATIE + LOU",
+  "Red Sox": "TARA",
+  "Reds": "JOE W",
+  "Rockies": "JUDY",
+  "Royals": "DEWEY",
+  "Tigers": "TRICIA",
+  "Twins": "VIVIAN",
+  "White Sox": "JOAN D",
+  "Yankees": "NICK B",
 };
 
 export const namesEightRunRoundOne = {

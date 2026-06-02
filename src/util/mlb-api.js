@@ -4,7 +4,7 @@ export const mlbUrlByDateRange = (startDate, endDate) => {
   return `https://bdfed.stitch.mlbinfra.com/bdfed/transform-mlb-scoreboard?stitch_env=prod&sortTemplate=4&sportId=1&&sportId=51&startDate=${startDate}&endDate=${endDate}&gameType=E&&gameType=S&&gameType=R&&gameType=F&&gameType=D&&gameType=L&&gameType=W&&gameType=A&&gameType=C&language=en&leagueId=104&&leagueId=103&&leagueId=159&&leagueId=160&contextTeamId=`;
 };
 
-export const thirteenStart = "2026-03-25";
+export const thirteenStart = "2026-06-01";
 export const eightStart = "2026-05-24";
 
 const getTodaysDate = (daysBack = 0) => {
