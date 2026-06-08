@@ -5,12 +5,21 @@ import { mlbUrlByDateRange } from '../util/mlb-api.js'
 
 const SALT_ROUNDS = 10;
 
-const projectId = import.meta.env.SAN_PROJECT_ID;
-const ver = import.meta.env.SAN_VER;
-const dataset = import.meta.env.SAN_DATASET;
-const sanityToken = import.meta.env.SAN_TOKEN;
-const JWTToken = import.meta.env.JWT;
-export const  isIntermission = import.meta.env.INTERMISSION === 'on'
+// Read env vars from process.env first (works in standalone Netlify Functions,
+// e.g. the scheduled `netlify/functions/ping.js`) and fall back to
+// import.meta.env for Astro/Vite-bundled SSR pages.
+const env = (key) => {
+  const fromProcess =
+    typeof process !== "undefined" && process.env ? process.env[key] : undefined;
+  return fromProcess ?? import.meta.env[key];
+};
+
+const projectId = env("SAN_PROJECT_ID");
+const ver = env("SAN_VER");
+const dataset = env("SAN_DATASET");
+const sanityToken = env("SAN_TOKEN");
+const JWTToken = env("JWT");
+export const isIntermission = env("INTERMISSION") === "on";
 
 export const query = (query) => {
   const encodedQuery = encodeURI(query);
