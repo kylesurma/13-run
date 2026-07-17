@@ -5,7 +5,7 @@ export const mlbUrlByDateRange = (startDate, endDate) => {
 };
 
 export const thirteenStart = "2026-06-01";
-export const eightStart = "2026-05-24";
+export const eightStart = "2026-07-17";
 
 const getTodaysDate = (daysBack = 0) => {
   const todayDate = new Date();
