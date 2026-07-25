@@ -36,7 +36,7 @@ export const namesHundredRoundOne = {
 
 // Round two: randomized Fisher-Yates-style shuffle (derangement) so no team
 // keeps the same name as RoundOne and every name is used exactly once.
-export const namesHundred = {
+export const namesHundredRoundTwo = {
   "Angels": "NICOLE",
   "Astros": "KATELYN",
   "Athletics": "DONNY D",
@@ -67,6 +67,41 @@ export const namesHundred = {
   "Twins": "BOOYA",
   "White Sox": "SUE B",
   "Yankees": "BARB A",
+};
+
+// Round three: same team order; every team is assigned a different name than
+// round two and all names are reused exactly once.
+export const namesHundred = {
+  "Angels": "BARB A",
+  "Astros": "TRICIA",
+  "Athletics": "JACKIE F",
+  "Blue Jays": "JOE W",
+  "Braves": "NICOLE",
+  "Brewers": "JANICE + ROSS",
+  "Cardinals": "ADMON",
+  "Cubs": "KYLE",
+  "D-backs": "PETER + ANNIE",
+  "Dodgers": "LAURA C",
+  "Giants": "ANGELA S",
+  "Guardians": "DANIELLE",
+  "Mariners": "KERI",
+  "Marlins": "PEG + GERALD",
+  "Mets": "JUDY",
+  "Nationals": "KATE",
+  "Orioles": "CARA",
+  "Padres": "MKW",
+  "Phillies": "DEWEY",
+  "Pirates": "TOM F",
+  "Rangers": "KATELYN",
+  "Rays": "BILLY B",
+  "Red Sox": "BOOYA",
+  "Reds": "TONY T",
+  "Rockies": "DONNY D",
+  "Royals": "DANNY K",
+  "Tigers": "LORI B",
+  "Twins": "SUE B",
+  "White Sox": "KAMI",
+  "Yankees": "JOAN D",
 };
 
 export const namesFiftyRoundOne = {
@@ -104,7 +139,7 @@ export const namesFiftyRoundOne = {
 
 // Round two: randomized Fisher-Yates-style shuffle (derangement) so no team
 // keeps the same name as RoundOne and every name is used exactly once.
-export const namesFifty = {
+export const namesFiftyRoundTwo = {
   "Angels": "ADMON",
   "Astros": "RYAN VB",
   "Athletics": "DENISE P",
@@ -135,6 +170,41 @@ export const namesFifty = {
   "Twins": "VIVIAN",
   "White Sox": "JOAN D",
   "Yankees": "NICK B",
+};
+
+// Round three: same team order; every team is assigned a different name than
+// round two and all names are reused exactly once.
+export const namesFifty = {
+  "Angels": "JOE W",
+  "Astros": "NICK B",
+  "Athletics": "DIANE S",
+  "Blue Jays": "BARB M",
+  "Braves": "AJ",
+  "Brewers": "KATIE + LOU",
+  "Cardinals": "DEWEY",
+  "Cubs": "JUDY",
+  "D-backs": "KERI",
+  "Dodgers": "TRICIA",
+  "Giants": "ADMON",
+  "Guardians": "JOAN D",
+  "Mariners": "CARA",
+  "Marlins": "DENISE P",
+  "Mets": "NICOLE",
+  "Nationals": "MIKE M",
+  "Orioles": "RYAN VB",
+  "Padres": "MKW",
+  "Phillies": "BILLY B",
+  "Pirates": "PEG + GERALD",
+  "Rangers": "MARG K",
+  "Rays": "MAT",
+  "Red Sox": "KATE",
+  "Reds": "MIKE P",
+  "Rockies": "TONY T",
+  "Royals": "DONNY D",
+  "Tigers": "TOM F",
+  "Twins": "ANGELA S",
+  "White Sox": "VIVIAN",
+  "Yankees": "TARA",
 };
 
 export const namesEightRunRoundOne = {
